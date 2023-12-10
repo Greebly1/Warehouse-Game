@@ -1,0 +1,171 @@
+{
+    "name": "playerControls",
+    "maps": [
+        {
+            "name": "gamePlay",
+            "id": "809dd2ed-b7b3-485a-a2d0-6ffe83764d55",
+            "actions": [
+                {
+                    "name": "move",
+                    "type": "Value",
+                    "id": "cdf5f6e5-6483-4cf1-83f1-8f9174f8fc22",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "mouseMove",
+                    "type": "Value",
+                    "id": "193a0fbb-5cf2-40d9-8ab6-29154accfccb",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "2D Vector",
+                    "id": "358fa7e2-9c76-4ce2-a771-4edd1f279fed",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "8d5d8e82-d36b-4af3-a751-746f7eaad151",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "M&K",
+                    "action": "move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "f02dea9d-6c21-45a7-95ca-b0fcc4859de0",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "M&K",
+                    "action": "move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "581f4c1b-aa62-4da7-a129-01b1417a6fdd",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "M&K",
+                    "action": "move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "7dc99429-3c22-4022-9a8b-16184ce0e3f9",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "M&K",
+                    "action": "move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "b737c8d8-16ce-457d-b2e4-3f9f1ea36197",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "M&K",
+                    "action": "mouseMove",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "title",
+            "id": "ee047cbd-fc6e-4d4c-825a-5eaa6945ac7f",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "f3ae6c16-3dbc-43e7-bf8a-9eab47cf0014",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f66e3329-8439-46e0-88c2-26959d653514",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "M&K",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "menu",
+            "id": "32f16a31-d3a4-4174-a04c-f49f18d3001c",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "39df85cb-76a8-41e3-929a-a7a73cbbe2e5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "246fbd98-489a-4403-ade6-190b80953041",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "M&K",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "M&K",
+            "bindingGroup": "M&K",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": true,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

@@ -70,14 +70,17 @@ public class GameManager : MonoBehaviour
             {
                 case gameState.Title:
                     titleState.gameObject.SetActive(true);
+                    playerController.player.input.SwitchCurrentActionMap("title");
                     break;
 
                 case gameState.Menu:
                     menuState.gameObject.SetActive(true);
+                    playerController.player.input.SwitchCurrentActionMap("menu");
                     break;
 
                 case gameState.Gameplay:
                     gameplayState.gameObject.SetActive(true);
+                    playerController.player.input.SwitchCurrentActionMap("gamePlay");
                     break;
             }
             return true;
