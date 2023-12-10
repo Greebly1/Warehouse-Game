@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,9 @@ public class playerController : MonoBehaviour
 
     private GameObject _pawn;
     private Movement pawnMovement;
+    public bool isHoldingBox { get; private set; } = false;
+
+    public Action setDownBox = delegate { };
 
     public PlayerInput input;
 
@@ -33,6 +37,8 @@ public class playerController : MonoBehaviour
             Destroy(this.gameObject);
         }
         input = GetComponent<PlayerInput>();
+        pickupReceiver.pickedUpItem += boxPickup;
+        setDownBox += boxSetdown;
     }
 
     private void Update()
@@ -50,7 +56,7 @@ public class playerController : MonoBehaviour
         pawnMovement.velocity.x = _value.x;
         pawnMovement.velocity.z = _value.y;
 
-        Debug.Log(_value);
+        //Debug.Log(_value);
     }
 
     public void OnMouseMove(InputValue value)
@@ -65,6 +71,20 @@ public class playerController : MonoBehaviour
         this.gameObject.transform.localRotation = Quaternion.Euler(camRot.x - _value.y, currentRot.y + _value.x, 0);
 
 
-        Debug.Log(_value);
+        //Debug.Log(_value);
     }
+
+    private void boxPickup()
+    {
+        Debug.Log("Picked up box");
+        isHoldingBox = true;
+    }
+
+    private void boxSetdown()
+    {
+        Debug.Log("Set down box");
+        isHoldingBox = false;
+    }
+
+
 }

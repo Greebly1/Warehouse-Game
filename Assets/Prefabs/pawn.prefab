@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 3944230867314902350}
   - component: {fileID: 7932502894067209251}
   - component: {fileID: -6069449464795824290}
+  - component: {fileID: 8085052340043746125}
+  - component: {fileID: 3835375926274468699}
   m_Layer: 0
   m_Name: pawn
   m_TagString: Untagged
@@ -45,6 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d35de3b317ca7a545b9aa7adb25eb4ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0, z: 0}
+  rotation: {x: 0, y: 0}
+  speed: 5
 --- !u!143 &-6069449464795824290
 CharacterController:
   m_ObjectHideFlags: 0
@@ -71,3 +76,36 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.2, z: 0}
+--- !u!114 &8085052340043746125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7673955909357503612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bee1785b548336449085280f9a7d8f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &3835375926274468699
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7673955909357503612}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.7457711, y: 1.5656133, z: 0.67259216}
+  m_Center: {x: 0.0032526553, y: 1.1602476, z: 0.009589776}
