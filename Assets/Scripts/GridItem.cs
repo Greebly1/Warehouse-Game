@@ -20,12 +20,17 @@ public class GridItem : MonoBehaviour
     [SerializeField] public int x;
     [SerializeField] public int y;
 
+    [SerializeField] GameObject monster;
+
     [SerializeField] GameObject boxPrefab;
 
     [SerializeField] Transform boxSpawn;
     public bool containsBox;
     public bool containsPlayer;
     public bool containsMonster;
+
+
+    
 
     [SerializeField] GameObject text;
 
@@ -62,6 +67,11 @@ public class GridItem : MonoBehaviour
 
         containsPlayer = true;
         Debug.Log("Player stepped into "+ x + " , "+ y);
+
+        if (containsMonster)
+        {
+            monster.SetActive(true);
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -74,6 +84,11 @@ public class GridItem : MonoBehaviour
         containsPlayer = false;
         _light.toggleLight(false);
         Debug.Log("Player stepped out of " + x + " , " + y);
+
+        if (containsMonster)
+        {
+            monster.SetActive(false);
+        }
     }
 
     public void spawnBox()
