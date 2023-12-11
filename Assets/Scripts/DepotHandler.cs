@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class DepotHandler : MonoBehaviour
 {
+    [SerializeField] AudioClip setDownSound;
+    [SerializeField] Transform soundLocation;
+
     private void OnTriggerEnter(Collider other)
     {
         pickupReceiver player = other.GetComponent<pickupReceiver>();
@@ -13,6 +16,8 @@ public class DepotHandler : MonoBehaviour
         if(playerController.player.isHoldingBox)
         {
             playerController.player.setDownBox.Invoke();
+            AudioSource.PlayClipAtPoint(setDownSound, soundLocation.position);
+
 
             BoxPickup.spawnRandomBox();
 

@@ -9,6 +9,7 @@ using UnityEngine.InputSystem;
 public class playerController : MonoBehaviour
 {
     public static playerController player;
+    public AudioSource ambience;
 
     private GameObject _pawn;
     private Movement pawnMovement;
@@ -53,6 +54,7 @@ public class playerController : MonoBehaviour
         input = GetComponent<PlayerInput>();
         pickupReceiver.pickedUpItem += boxPickup;
         setDownBox += boxSetdown;
+        ambience = GetComponent<AudioSource>();
     }
 
     private void Update()

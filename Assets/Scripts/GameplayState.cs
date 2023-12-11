@@ -6,6 +6,8 @@ public class GameplayState : IStateController
 {
     [SerializeField] public Transform playerSpawn;
     [SerializeField] GameObject pawnPrefab;
+    [SerializeField] AudioClip startSound;
+    [SerializeField] AudioClip endSound;
 
     int _score = 0;
     
@@ -37,6 +39,10 @@ public class GameplayState : IStateController
             item.resetSelf();
         }
 
+        playerController.player.ambience.enabled = false;
+
+        AudioSource.PlayClipAtPoint(endSound, playerController.player.pawn.gameObject.transform.position);
+
         Debug.Log("Score " + score);
         
     }
@@ -48,10 +54,15 @@ public class GameplayState : IStateController
         spawnPlayer();
         playerController.player.setDownBox += scoreIncrease;
 
+        AudioSource.PlayClipAtPoint(startSound, playerController.player.pawn.gameObject.transform.position);
+        playerController.player.ambience.enabled = true;
+
         GridItem.Grid[2, 0].spawnBox();
         GridItem.Grid[2, 0].containsPlayer = true;
 
         GridItem.Grid[2,1].containsMonster = true;
+
+        
     }
 
     private void Start()

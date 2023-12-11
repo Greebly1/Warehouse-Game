@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class BoxPickup : MonoBehaviour, IPickup
 {
+    [SerializeField] AudioClip PickupSound;
+
     public static List<BoxPickup> boxes = new List<BoxPickup>();
     void OnTriggerEnter(Collider other)
     {
@@ -40,6 +42,8 @@ public class BoxPickup : MonoBehaviour, IPickup
 
     private void OnDestroy()
     {
+        if (!GameManager.Game.changingState) { AudioSource.PlayClipAtPoint(PickupSound, transform.position); }
+        
         boxes.Remove(this);
     }
 

@@ -7,6 +7,8 @@ public class LightToggle : MonoBehaviour
 {
     [SerializeField] public bool isOn { get; private set; } = false;
     [SerializeField] public GameObject lightContainer;
+    [SerializeField] AudioClip switchSound;
+    [SerializeField] Transform soundLocation;
 
     public static Action lightingUpdated = delegate { };
     public Action _localLightEnabled = delegate { };
@@ -67,7 +69,8 @@ public class LightToggle : MonoBehaviour
                 isOn = false;
                 Debug.Log("Light turned off");
                 break;
-        }   
+        }
+        AudioSource.PlayClipAtPoint(switchSound, soundLocation.position);
 
         lightingUpdated.Invoke();
         _localLightEnabled.Invoke();
