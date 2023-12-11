@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,9 @@ public class LightToggle : MonoBehaviour
 {
     [SerializeField] public bool isOn { get; private set; } = false;
     [SerializeField] public GameObject lightContainer;
+
+    public static Action lightingUpdated = delegate { };
+    public Action _localLightEnabled = delegate { };
 
     bool motionDetected = false;
     float _timeSinceMotion = 0f;
@@ -44,8 +48,6 @@ public class LightToggle : MonoBehaviour
                 Debug.Log("Random toggling!!!!");
             }
         }
-
-        
     }
 
     public void toggleLight(bool _switch)
@@ -66,6 +68,9 @@ public class LightToggle : MonoBehaviour
                 Debug.Log("Light turned off");
                 break;
         }   
+
+        lightingUpdated.Invoke();
+        _localLightEnabled.Invoke();
     }
 
     private void OnTriggerEnter(Collider other)

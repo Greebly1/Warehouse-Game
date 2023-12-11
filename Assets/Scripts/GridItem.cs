@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -14,7 +15,7 @@ public class GridItem : MonoBehaviour
     };
 
     [HideInInspector] public static List<GridItem> gridItems = new List<GridItem>();
-
+    
     [SerializeField] public int x;
     [SerializeField] public int y;
 
@@ -35,6 +36,16 @@ public class GridItem : MonoBehaviour
             gridItems.Add(this);
             pickupReceiver.pickedUpItem += boxPickedUp;
         }
+    }
+
+    private void OnEnable()
+    {
+        _light._localLightEnabled += onEventLightSwitch;
+    }
+
+    private void OnDisable()
+    {
+        _light._localLightEnabled -= onEventLightSwitch;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -80,5 +91,13 @@ public class GridItem : MonoBehaviour
         containsMonster = false;
         containsPlayer = false;
         containsBox = false;
+    }
+
+    void onEventLightSwitch()
+    {
+        if (containsMonster)
+        {
+            GameManager.Game.gameplayState.GetComponent<GameplayState>().gameOver();
+        }
     }
 }

@@ -15,6 +15,11 @@ public class DepotHandler : MonoBehaviour
             playerController.player.setDownBox.Invoke();
 
             BoxPickup.spawnRandomBox();
+
+            //Amazingly disgutsing line of code, it kills all monsters, then spawns a number of monsters based on the current score
+            //This works because killAllMonsters and spawnMonsters both return the monster manager 
+            Monster.Manager.killAllMonsters().spawnMonsters(GameManager.Game.gameplayState.GetComponent<GameplayState>().score);
+            
         }
     }
 

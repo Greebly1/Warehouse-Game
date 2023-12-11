@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public IStateController titleState;
     public IStateController menuState;
     public IStateController gameplayState;
+    public bool changingState { get; private set; } = false;
 
     private void Awake()
     {
@@ -48,6 +49,8 @@ public class GameManager : MonoBehaviour
     {
         if ( state != newState)
         {
+            changingState = true;
+
             switch (state)
             {
                 case gameState.Title:
@@ -63,6 +66,7 @@ public class GameManager : MonoBehaviour
                     break;
             }
 
+            changingState = false;
             state = newState;
             disableAllStates();
 
@@ -82,7 +86,7 @@ public class GameManager : MonoBehaviour
                 case gameState.Gameplay:
                     gameplayState.gameObject.SetActive(true);
                     playerController.player.input.SwitchCurrentActionMap("gamePlay");
-                    BoxPickup.spawnRandomBox();
+                   
                     break;
             }
             return true;

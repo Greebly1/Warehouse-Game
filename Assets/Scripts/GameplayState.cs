@@ -58,4 +58,9 @@ public class GameplayState : IStateController
     {
         score += 1;
     }
+
+    public void gameOver()
+    {
+        GameManager.Game.setState(gameState.Menu);
+    }
 }

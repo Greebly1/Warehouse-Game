@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -6069449464795824290}
   - component: {fileID: 8085052340043746125}
   - component: {fileID: 3835375926274468699}
+  - component: {fileID: 3132639254740665469}
   m_Layer: 0
   m_Name: pawn
   m_TagString: Untagged
@@ -109,3 +110,15 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.7457711, y: 1.5656133, z: 0.67259216}
   m_Center: {x: 0.0032526553, y: 1.1602476, z: 0.009589776}
+--- !u!114 &3132639254740665469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7673955909357503612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9afc5115b874c54192b391099d842dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
