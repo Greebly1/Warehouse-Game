@@ -113,6 +113,7 @@ public class GridItem : MonoBehaviour
         containsMonster = false;
         containsPlayer = false;
         containsBox = false;
+        monster.SetActive(false );
     }
 
     void onEventLightSwitch()
