@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -23,6 +24,18 @@ public class playerController : MonoBehaviour
         {
             _pawn = value;
             pawnMovement = value.GetComponent<Movement>();
+        }
+    }
+
+    public bool inLight
+    {
+        get
+        {
+            foreach (GridItem gridSquare in GridItem.gridItems.Where(_gridItem => _gridItem.containsPlayer))
+            {
+                if (gridSquare._light.isOn) { return true; }
+            }
+            return false;
         }
     }
 
