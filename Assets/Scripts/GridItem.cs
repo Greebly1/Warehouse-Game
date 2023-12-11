@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -26,6 +27,8 @@ public class GridItem : MonoBehaviour
     public bool containsPlayer;
     public bool containsMonster;
 
+    [SerializeField] GameObject text;
+
     public LightToggle _light;
 
     private void Awake()
@@ -36,6 +39,8 @@ public class GridItem : MonoBehaviour
             gridItems.Add(this);
             pickupReceiver.pickedUpItem += boxPickedUp;
         }
+
+        text.GetComponent<TextMeshPro>().text = "Locale " + new Vector2Int(x, y);
     }
 
     private void OnEnable()
@@ -78,6 +83,8 @@ public class GridItem : MonoBehaviour
         containsBox = true;
         GameObject crate = Instantiate(boxPrefab, boxSpawn.position, boxSpawn.rotation);
         crate.transform.parent = this.gameObject.transform;
+
+        HUD.instance.setLocale(new Vector2Int(x, y));
     }
 
     void boxPickedUp()
