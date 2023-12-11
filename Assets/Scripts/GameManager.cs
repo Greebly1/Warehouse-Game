@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour
                 case gameState.Title:
                     titleState.gameObject.SetActive(true);
                     playerController.player.input.SwitchCurrentActionMap("title");
+
                     break;
 
                 case gameState.Menu:
@@ -81,6 +82,7 @@ public class GameManager : MonoBehaviour
                 case gameState.Gameplay:
                     gameplayState.gameObject.SetActive(true);
                     playerController.player.input.SwitchCurrentActionMap("gamePlay");
+                    BoxPickup.spawnRandomBox();
                     break;
             }
             return true;
