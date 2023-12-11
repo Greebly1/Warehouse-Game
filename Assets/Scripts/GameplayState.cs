@@ -6,7 +6,20 @@ public class GameplayState : IStateController
 {
     [SerializeField] public Transform playerSpawn;
     [SerializeField] GameObject pawnPrefab;
-    public int score = 0;
+
+    int _score = 0;
+    
+    public int score
+    {
+        get { return _score; }
+        set { 
+            _score = value; 
+            if (GameManager.Game.highscore < _score)
+            {
+                GameManager.Game.highscore = _score;
+            }
+        }
+    }
 
 
     public override void endState()
@@ -34,7 +47,11 @@ public class GameplayState : IStateController
         Debug.Log("Starting Gameplay state");
         spawnPlayer();
         playerController.player.setDownBox += scoreIncrease;
-        
+
+        GridItem.Grid[2, 0].spawnBox();
+        GridItem.Grid[2, 0].containsPlayer = true;
+
+        GridItem.Grid[2,1].containsMonster = true;
     }
 
     private void Start()
@@ -56,7 +73,7 @@ public class GameplayState : IStateController
 
     void scoreIncrease()
     {
-        score += 1;
+        score = score + 1;
     }
 
     public void gameOver()

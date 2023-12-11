@@ -120,7 +120,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ""id"": ""ee047cbd-fc6e-4d4c-825a-5eaa6945ac7f"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""submit"",
                     ""type"": ""Button"",
                     ""id"": ""f3ae6c16-3dbc-43e7-bf8a-9eab47cf0014"",
                     ""expectedControlType"": ""Button"",
@@ -133,11 +133,11 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""f66e3329-8439-46e0-88c2-26959d653514"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/anyKey"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""M&K"",
-                    ""action"": ""New action"",
+                    ""action"": ""submit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -148,9 +148,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ""id"": ""32f16a31-d3a4-4174-a04c-f49f18d3001c"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""play"",
                     ""type"": ""Button"",
                     ""id"": ""39df85cb-76a8-41e3-929a-a7a73cbbe2e5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""exit"",
+                    ""type"": ""Button"",
+                    ""id"": ""0673d035-6bb4-4ec0-8d74-38237d53206c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -161,11 +170,22 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""246fbd98-489a-4403-ade6-190b80953041"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""M&K"",
-                    ""action"": ""New action"",
+                    ""action"": ""play"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bdcf7ff9-1777-48fc-bb42-ae9240bbcf11"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""M&K"",
+                    ""action"": ""exit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -197,10 +217,11 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_gamePlay_mouseMove = m_gamePlay.FindAction("mouseMove", throwIfNotFound: true);
         // title
         m_title = asset.FindActionMap("title", throwIfNotFound: true);
-        m_title_Newaction = m_title.FindAction("New action", throwIfNotFound: true);
+        m_title_submit = m_title.FindAction("submit", throwIfNotFound: true);
         // menu
         m_menu = asset.FindActionMap("menu", throwIfNotFound: true);
-        m_menu_Newaction = m_menu.FindAction("New action", throwIfNotFound: true);
+        m_menu_play = m_menu.FindAction("play", throwIfNotFound: true);
+        m_menu_exit = m_menu.FindAction("exit", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -316,12 +337,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     // title
     private readonly InputActionMap m_title;
     private List<ITitleActions> m_TitleActionsCallbackInterfaces = new List<ITitleActions>();
-    private readonly InputAction m_title_Newaction;
+    private readonly InputAction m_title_submit;
     public struct TitleActions
     {
         private @PlayerControls m_Wrapper;
         public TitleActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_title_Newaction;
+        public InputAction @submit => m_Wrapper.m_title_submit;
         public InputActionMap Get() { return m_Wrapper.m_title; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -331,16 +352,16 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_TitleActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_TitleActionsCallbackInterfaces.Add(instance);
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
+            @submit.started += instance.OnSubmit;
+            @submit.performed += instance.OnSubmit;
+            @submit.canceled += instance.OnSubmit;
         }
 
         private void UnregisterCallbacks(ITitleActions instance)
         {
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
+            @submit.started -= instance.OnSubmit;
+            @submit.performed -= instance.OnSubmit;
+            @submit.canceled -= instance.OnSubmit;
         }
 
         public void RemoveCallbacks(ITitleActions instance)
@@ -362,12 +383,14 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     // menu
     private readonly InputActionMap m_menu;
     private List<IMenuActions> m_MenuActionsCallbackInterfaces = new List<IMenuActions>();
-    private readonly InputAction m_menu_Newaction;
+    private readonly InputAction m_menu_play;
+    private readonly InputAction m_menu_exit;
     public struct MenuActions
     {
         private @PlayerControls m_Wrapper;
         public MenuActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_menu_Newaction;
+        public InputAction @play => m_Wrapper.m_menu_play;
+        public InputAction @exit => m_Wrapper.m_menu_exit;
         public InputActionMap Get() { return m_Wrapper.m_menu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -377,16 +400,22 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_MenuActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_MenuActionsCallbackInterfaces.Add(instance);
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
+            @play.started += instance.OnPlay;
+            @play.performed += instance.OnPlay;
+            @play.canceled += instance.OnPlay;
+            @exit.started += instance.OnExit;
+            @exit.performed += instance.OnExit;
+            @exit.canceled += instance.OnExit;
         }
 
         private void UnregisterCallbacks(IMenuActions instance)
         {
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
+            @play.started -= instance.OnPlay;
+            @play.performed -= instance.OnPlay;
+            @play.canceled -= instance.OnPlay;
+            @exit.started -= instance.OnExit;
+            @exit.performed -= instance.OnExit;
+            @exit.canceled -= instance.OnExit;
         }
 
         public void RemoveCallbacks(IMenuActions instance)
@@ -420,10 +449,11 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     }
     public interface ITitleActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnSubmit(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnPlay(InputAction.CallbackContext context);
+        void OnExit(InputAction.CallbackContext context);
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -85,6 +86,22 @@ public class playerController : MonoBehaviour
 
 
         //Debug.Log(_value);
+    }
+
+
+    public void OnSubmit(InputValue inputValue)
+    {
+        GameManager.Game.setState(gameState.Menu);
+    }
+
+    public void OnPlay(InputValue inputValue)
+    {
+        GameManager.Game.setState(gameState.Gameplay);
+    }
+
+    public void OnExit(InputValue inputValue)
+    {
+        Application.Quit();
     }
 
     private void boxPickup()

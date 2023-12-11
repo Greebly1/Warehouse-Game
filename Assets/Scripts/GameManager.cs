@@ -6,9 +6,15 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Game;
     public gameState state;
+    public gameState stateLastIn = gameState.Title;
+
     public IStateController titleState;
     public IStateController menuState;
     public IStateController gameplayState;
+
+    public int highscore = 0;
+
+
     public bool changingState { get; private set; } = false;
 
     private void Awake()
@@ -50,6 +56,7 @@ public class GameManager : MonoBehaviour
         if ( state != newState)
         {
             changingState = true;
+            
 
             switch (state)
             {
@@ -67,6 +74,7 @@ public class GameManager : MonoBehaviour
             }
 
             changingState = false;
+            stateLastIn = state;
             state = newState;
             disableAllStates();
 
