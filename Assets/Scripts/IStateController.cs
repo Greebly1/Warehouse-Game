@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public abstract class IStateController : MonoBehaviour
 {
-    public abstract void endState();
+    public abstract void EndState();
 }
