@@ -47,6 +47,17 @@ public class GridItem : MonoBehaviour
     {
         //this will check the lose condition whenever the light gets turned on
         _light._localLightEnabled += OnEventLightSwitch; 
+        if (x == 2 && y == 0)
+        {
+            Debug.Log("box shouldve spawned");
+            SpawnBox();
+        } 
+
+        if (x == 2 && y == 1)
+        {
+            containsMonster = true;
+            //monster.SetActive(true);
+        }
     }
 
     private void OnDisable()
